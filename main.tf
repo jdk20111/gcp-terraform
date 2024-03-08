@@ -8,7 +8,6 @@ provider "google" {
 #build a random id resrouce that creates a random id
 resource "random_id" "suffix" {
   byte_length = 2
-
 }
 
 #builds a gcp compute instance 
