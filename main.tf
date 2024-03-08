@@ -1,3 +1,7 @@
+locals {
+  suffix = random_id.suffix.hex
+}
+
 #google provider config that specifies project and default region/zone
 provider "google" {
   project = "ivory-team-416601"
@@ -12,7 +16,7 @@ resource "random_id" "suffix" {
 
 #builds a gcp compute instance 
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
+  name         = "terraform-instance-${local.suffix}"
   machine_type = "e2-micro"
 
   boot_disk {
