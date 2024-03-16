@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "static-site" {
-  name          = "hello-world-${var.suffix}"
+  name          = "hello-world-${local.suffix}"
   location      = "us-central1"
   force_destroy = true
 

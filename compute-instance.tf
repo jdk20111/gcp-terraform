@@ -1,6 +1,6 @@
 #builds a gcp compute instance
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance-${var.suffix}"
+  name         = "terraform-instance-${local.suffix}"
   machine_type = "e2-micro"
 
   boot_disk {
@@ -9,6 +9,7 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 
+  #
   network_interface {
     # A default network is created for all GCP projects
     network = "default"
