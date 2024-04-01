@@ -6,3 +6,8 @@
 *.key
 *.pem
 *.csr
+*.cert
+*.cnf
+*.req
+*.config
+*.pfx
