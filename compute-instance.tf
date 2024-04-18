@@ -9,6 +9,17 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
   tags = ["hw-http-server"]
+  labels = {
+    goog-ops-agent-policy = "v2-x86-template-1-2-0"
+  }
+  metadata = {
+    enable-guest-attributes = "TRUE"
+    enable-osconfig         = "TRUE"
+  }
+  service_account {
+    email  = google_service_account.test_service_account.email
+    scopes = ["cloud-platform"]
+  }
   #
   network_interface {
     # A default network is created for all GCP projects
@@ -36,4 +47,9 @@ resource "google_compute_instance_group" "hw-instance-group" {
     port = "80"
   }
   zone = "us-central1-c"
+}
+
+resource "google_service_account" "test_service_account" {
+  account_id   = "test-service-account-id-${local.suffix}"
+  display_name = "Test Service Account"
 }
